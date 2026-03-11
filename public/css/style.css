@@ -494,3 +494,21 @@ body {
   .sidebar { display: none; }
   .join-card { padding: 28px 20px; }
 }
+
+/* ─── CLEAR BUTTON ──────────────────────────────── */
+.btn-clear {
+  background: transparent;
+  border: 1px solid rgba(255, 79, 106, 0.3);
+  border-radius: 8px;
+  padding: 5px 12px;
+  color: var(--danger);
+  font-family: var(--mono);
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  letter-spacing: 0.3px;
+}
+.btn-clear:hover {
+  background: rgba(255, 79, 106, 0.1);
+  border-color: var(--danger);
+}

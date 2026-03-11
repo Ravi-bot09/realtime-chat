@@ -78,6 +78,14 @@ io.on('connection', (socket) => {
     io.emit('chat:message', msg);
   });
 
+  // Clear chat for everyone
+  socket.on('chat:clear', () => {
+    const user = activeUsers.get(socket.id);
+    if (!user) return;
+    chatHistory.length = 0;
+    io.emit('chat:cleared', { by: user.username });
+  });
+
   // Typing indicator
   socket.on('chat:typing', (isTyping) => {
     const user = activeUsers.get(socket.id);

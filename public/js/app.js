@@ -249,6 +249,22 @@ leaveBtn.addEventListener('click', () => {
   usernameInput.focus();
 });
 
+// ─── CLEAR CHAT ───────────────────────────────────
+document.getElementById('clear-btn').addEventListener('click', () => {
+  if (confirm('Clear the chat for everyone in the room?')) {
+    socket.emit('chat:clear');
+  }
+});
+
+socket.on('chat:cleared', ({ by }) => {
+  messagesArea.innerHTML = '';
+  const el = document.createElement('div');
+  el.className = 'msg-system';
+  el.innerHTML = `<span>${by}</span> cleared the chat`;
+  messagesArea.appendChild(el);
+  scrollToBottom();
+});
+
 // ─── RECONNECT ────────────────────────────────────
 socket.on('disconnect', () => {
   if (myUsername) {
